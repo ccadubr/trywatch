@@ -51,14 +51,17 @@ class CountdownTimer extends Component {
     let minutes = 0;
     let seconds = 0;
 
-    if (inputNumber.includes('m') && inputNumber.includes('s')) {
-      [minutes, seconds] = inputNumber
-        .split('m')
-        .map((item) => item.replace('s', ''));
-    } else if (inputNumber.includes('m')) {
-      minutes = inputNumber.replace('m', '');
-    } else if (inputNumber.includes('s')) {
-      seconds = inputNumber.replace('s', '');
+    const hasMinutes = inputNumber.includes('m');
+    const hasSeconds = inputNumber.includes('s');
+    const hasP = inputNumber.includes(':');
+
+    if (hasMinutes) minutes = inputNumber.replace('m', '');
+    if (hasSeconds) seconds = inputNumber.replace('s', '');
+    if (hasMinutes && hasSeconds) [minutes, seconds] = inputNumber.split('m').map(item => item.replace('s', ''));
+    if (hasP) {
+      const x = inputNumber.split(':');
+      minutes = x[0];
+      seconds = x[1];
     }
 
     this.setState({
@@ -79,7 +82,7 @@ class CountdownTimer extends Component {
 
   stopTimer = () => {
     clearInterval(this.interval);
-    this.setState({ inputNumber: '', time: 0, RestartNumber: 0, start: true,});
+    this.setState({ inputNumber: '', time: 0, RestartNumber: 0, start: true, disable: true });
   };
 
   formatTime(time) {

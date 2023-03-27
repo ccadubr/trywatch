@@ -111,6 +111,16 @@ button:hover {
   transition: 0.2s;
 }
 
+button:disabled {
+  background: #a6a6a6;
+  box-shadow: 0 0 0;
+}
+
+button:hover:disabled {
+  background: #a6a6a6;
+  transform: none;
+}
+
 .finish {
   animation: scaleIn .4s forwards;
   align-items: center;

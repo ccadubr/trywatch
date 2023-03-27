@@ -142,7 +142,7 @@ class CountdownTimer extends Component {
           finished && (
           <div className="finish">
             <p>O tempo acabou 🎉 #VQV</p>
-            <button onClick={ () => {this.setState({ finished: false })} }>Fechar</button>
+            <button onClick={ () => {this.setState({ finished: false, disable: true })} }>Fechar</button>
             <audio autoPlay>
               <source src={alarm} type="audio/mp3" />
             </audio>

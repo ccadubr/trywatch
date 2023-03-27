@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/countDownTimes.css';
-import alarm from '../assets/alarm.mp3'
+import alarm from '../assets/alarm.wav'
 
 class CountdownTimer extends Component {
   constructor(props) {

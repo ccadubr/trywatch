@@ -15,6 +15,7 @@ class CountdownTimer extends Component {
      disable: true,
      start: true,
      notStarted: true,
+     disableInput: false,
     };
   }
 
@@ -42,7 +43,7 @@ class CountdownTimer extends Component {
         this.setState({ time: time - 1, finished: false, });
       } else {
         clearInterval(this.interval);
-        this.setState({ finished: true, start: true, notStarted: true });
+        this.setState({ finished: true, start: true, notStarted: true, disableInput: false, disable: true });
       }
     }, 1000);
 
@@ -75,18 +76,19 @@ class CountdownTimer extends Component {
       finished: false,
       start: false,
       notStarted: false,
+      disableInput: true
     });
     this.restartTimer();
   };
 
   pauseTimer = () => {
     clearInterval(this.interval);
-    this.setState({ paused: true });
+    this.setState({ paused: true, disableInput: true });
   };
 
   stopTimer = () => {
     clearInterval(this.interval);
-    this.setState({ inputNumber: '', time: 0, RestartNumber: 0, start: true, disable: true, notStarted: true });
+    this.setState({ inputNumber: '', time: 0, RestartNumber: 0, start: true, disable: true, notStarted: true, disableInput: false });
   };
 
   formatTime(time) {
@@ -116,34 +118,42 @@ class CountdownTimer extends Component {
   }
 
   render() {
-    const {time, start, inputNumber, disable, paused, finished,notStarted} = this.state
+    const {disableInput, time, start, inputNumber, disable, paused, finished,notStarted} = this.state
     return (
       <>
         <div className="stopwatch"> 
         {/* */}
           <h1>{this.formatTime(time)}</h1>
-          <input
-          maxLength={7}
-            type='text'
-            placeholder='Ex.: 3m 30s ou 3:30'
-            value={ inputNumber }
-            onChange={this.handleChange}
-          />
-          <div className="options">
-            {
-                start && <button  disabled={disable} onClick={ () => this.startTimer() }>Começar</button>
-            }
-            { !notStarted &&
-                (paused ? (<button onClick={ () => this.restartTimer() }>Reiniciar</button>) : ( <button onClick={ () => this.pauseTimer() }>Pausar</button>))
-            }
-            { !notStarted && <button onClick={ () => this.stopTimer() }>Parar</button> }
-          </div>
+          <form>
+            { !disableInput && <input
+              maxLength={7}
+              type='text'
+              placeholder='Ex.: 3m 30s ou 3:30'
+              value={ inputNumber }
+              onChange={this.handleChange}
+              onKeyUp={ (event) => {
+                if (event.key === 'Enter') {
+                  event.preventDefault();
+                  this.setState({ disableInput: true });
+                };
+              } }
+            /> }
+            <div className="options">
+              {
+                  start && <button type="submit" disabled={disable} onClick={ () => this.startTimer() }>Começar</button>
+              }
+              { !notStarted &&
+                  (paused ? (<button type="button" onClick={ () => this.restartTimer() }>Reiniciar</button>) : ( <button type="button" onClick={ () => this.pauseTimer() }>Pausar</button>))
+              }
+              { !notStarted && <button onClick={ () => this.stopTimer() }>Parar</button> }
+            </div>
+          </form>
         </div>
         {
           finished && (
           <div className="finish">
             <p>O tempo acabou 🎉 #VQV</p>
-            <button onClick={ () => {this.setState({ finished: false, disable: true })} }>Fechar</button>
+            <button type="button" onClick={ () => {this.setState({ finished: false, disable: true })} }>Fechar</button>
             <audio autoPlay>
               <source src={alarm} type="audio/mp3" />
             </audio>

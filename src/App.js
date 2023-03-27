@@ -1,11 +1,18 @@
 import './App.css';
 import CountdownTimer from './components/countDownTimes';
+import logo from './images/logo_trybe.svg';
 
 function App() {
   return (
-    <div>
+    <>
+      <header>
+        <img src={logo} alt={logo} />
+      </header>
+    <div className="container">
       <CountdownTimer />
     </div>
+      <footer>Desenvolvidor por: Ruan Portella & Carlos Eduardo</footer>
+    </>
   );
 }
 

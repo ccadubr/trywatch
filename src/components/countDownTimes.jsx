@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import '../styles/countDownTimes.css';
+import alarm from '../assets/alarm.mp3'
 
 class CountdownTimer extends Component {
   constructor(props) {
@@ -12,6 +14,7 @@ class CountdownTimer extends Component {
      paused: false,
      disable: true,
      start: true,
+     notStarted: true,
     };
   }
 
@@ -70,7 +73,8 @@ class CountdownTimer extends Component {
       RestartNumber: Number(minutes) * 60 + Number(seconds),
       paused: false,
       finished: false,
-      start: false
+      start: false,
+      notStarted: false,
     });
     this.restartTimer();
   };
@@ -82,39 +86,69 @@ class CountdownTimer extends Component {
 
   stopTimer = () => {
     clearInterval(this.interval);
-    this.setState({ inputNumber: '', time: 0, RestartNumber: 0, start: true, disable: true });
+    this.setState({ inputNumber: '', time: 0, RestartNumber: 0, start: true, disable: true, notStarted: true });
   };
 
   formatTime(time) {
-    const minutes = Math.floor(time / 60).toString().padStart(2, '0');
-    const seconds = (time % 60).toString().padStart(2, '0');
-    return `${minutes}:${seconds}`;
+    const [minutesRight, minutesLeft] = Math.floor(time / 60).toString().padStart(2, '0');
+    const [secondsRight, secondsLeft] = (time % 60).toString().padStart(2, '0');
+    return (
+    <div className="timer">
+      <div className="minutes">
+        <span className="minutesRight">
+          {minutesRight}
+        </span>
+        <span className="minutesLeft">
+          {minutesLeft}
+        </span>
+      </div>
+    <span>:</span>
+      <div className="seconds">
+        <span className="secondsRight">
+          {secondsRight}
+        </span>
+        <span className="secondsLeft">
+          {secondsLeft}
+        </span>
+      </div>
+    </div>
+    );
   }
 
-
   render() {
-    const {time, start, inputNumber, disable, paused, finished} = this.state
+    const {time, start, inputNumber, disable, paused, finished,notStarted} = this.state
     return (
-      <div>
-        <h1>{this.formatTime(time)}</h1>
-        <input
-         maxLength={7}
-          type='text'
-          placeholder='3m 30s ou 3:30'
-          value={ inputNumber }
-          onChange={this.handleChange}
-        />
+      <>
+        <div className="stopwatch">
+          <h1>{this.formatTime(time)}</h1>
+          <input
+          maxLength={7}
+            type='text'
+            placeholder='3m 30s ou 3:30'
+            value={ inputNumber }
+            onChange={this.handleChange}
+          />
+          <div className="options">
+            {
+                start && <button  disabled={disable} onClick={ () => this.startTimer() }>Começar</button>
+            }
+            { !notStarted &&
+                (paused ? (<button onClick={ () => this.restartTimer() }>Reiniciar</button>) : ( <button onClick={ () => this.pauseTimer() }>Pausar</button>))
+            }
+            { !notStarted && <button onClick={ () => this.stopTimer() }>Parar</button> }
+          </div>
+        </div>
         {
-            start && <button  disabled={disable} onClick={ () => this.startTimer() }>Começar</button>
+          finished && (
+          <div className="finish">
+            <p>O tempo acabou 🎉 #VQV</p>
+            <button onClick={ () => {this.setState({ finished: false })} }>Fechar</button>
+            <audio autoPlay>
+              <source src={alarm} type="audio/mp3" />
+            </audio>
+          </div>)
         }
-        {
-            paused ? (<button onClick={ () => this.restartTimer() }>Reiniciar</button>) : ( <button onClick={ () => this.pauseTimer() }>Pausar</button>)
-        }
-        <button onClick={ () => this.stopTimer() }>Parar</button>
-        {
-            finished && <p>Acabou</p>
-        }
-      </div>
+      </>
     );
   }
 }

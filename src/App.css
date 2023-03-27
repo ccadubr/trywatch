@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,36 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+header {
+  height: 5vh;
+  text-align: center;
+}
+
+header img {
+  margin-top: 20px;
+  width: 180px;
+}
+
+footer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background: #282c34;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  height: 5vh;
 }

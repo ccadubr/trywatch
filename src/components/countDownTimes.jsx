@@ -120,7 +120,7 @@ class CountdownTimer extends Component {
     return (
       <>
         <div className="stopwatch"> 
-        {/*a */}
+        {/* */}
           <h1>{this.formatTime(time)}</h1>
           <input
           maxLength={7}

@@ -132,7 +132,7 @@ class CountdownTimer extends Component {
               value={ inputNumber }
               onChange={this.handleChange}
               onKeyUp={ (event) => {
-                if (event.key === 'Enter') {
+                if (event.key === 'Enter' && !disable) {
                   event.preventDefault();
                   this.setState({ disableInput: true });
                 };

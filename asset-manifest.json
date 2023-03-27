@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/trywatch/static/css/main.f9866d0f.css",
-    "main.js": "/trywatch/static/js/main.7c122c02.js",
+    "main.js": "/trywatch/static/js/main.a406b33f.js",
     "static/js/787.d77dd2c9.chunk.js": "/trywatch/static/js/787.d77dd2c9.chunk.js",
     "static/media/alarm.wav": "/trywatch/static/media/alarm.f8cfd05560e707f00791.wav",
-    "static/media/logo_trybe.svg": "/trywatch/static/media/logo_trybe.fe68206403709ba03aaf06959ca74ddb.svg",
+    "static/media/logo_trybe.svg": "/trywatch/static/media/logo_trybe.70efc872eadb07671d5f25a4f34a26ab.svg",
     "index.html": "/trywatch/index.html",
     "main.f9866d0f.css.map": "/trywatch/static/css/main.f9866d0f.css.map",
-    "main.7c122c02.js.map": "/trywatch/static/js/main.7c122c02.js.map",
+    "main.a406b33f.js.map": "/trywatch/static/js/main.a406b33f.js.map",
     "787.d77dd2c9.chunk.js.map": "/trywatch/static/js/787.d77dd2c9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f9866d0f.css",
-    "static/js/main.7c122c02.js"
+    "static/js/main.a406b33f.js"
   ]
 }

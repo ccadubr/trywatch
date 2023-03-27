@@ -42,7 +42,7 @@ class CountdownTimer extends Component {
         this.setState({ time: time - 1, finished: false, });
       } else {
         clearInterval(this.interval);
-        this.setState({ finished: true, start: true, });
+        this.setState({ finished: true, start: true, notStarted: true });
       }
     }, 1000);
 

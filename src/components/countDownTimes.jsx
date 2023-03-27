@@ -119,7 +119,8 @@ class CountdownTimer extends Component {
     const {time, start, inputNumber, disable, paused, finished,notStarted} = this.state
     return (
       <>
-        <div className="stopwatch">
+        <div className="stopwatch"> 
+        {/*  */}
           <h1>{this.formatTime(time)}</h1>
           <input
           maxLength={7}

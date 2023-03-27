@@ -124,7 +124,7 @@ class CountdownTimer extends Component {
           <input
           maxLength={7}
             type='text'
-            placeholder='3m 30s ou 3:30'
+            placeholder='Ex.: 3m 30s ou 3:30'
             value={ inputNumber }
             onChange={this.handleChange}
           />

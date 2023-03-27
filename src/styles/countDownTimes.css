@@ -64,6 +64,7 @@ padding: 10px;
 
 input {
   border: 2px solid #ccc;
+  border-radius: 6px;
   padding: 10px;
   margin: 0 auto;
   width: 80%;
@@ -71,7 +72,14 @@ input {
 
 input:focus {
   background-color: #f7f7f7;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 5px 2px #ffd700;
+  outline: 0;
+  color: #333;
+}
+
+input:focus:hover {
+  background-color: #f7f7f7;
+  box-shadow: 0 0 5px 2px #ffd700;
   outline: 0;
   color: #333;
 }
@@ -85,6 +93,10 @@ input + span {
   color: #999;
   font-size: 12px;
   margin-top: 5px;
+}
+
+input::placeholder {
+  text-align: center;
 }
 
 button {

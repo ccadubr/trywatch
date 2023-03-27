@@ -11,7 +11,7 @@ function App() {
     <div className="container">
       <CountdownTimer />
     </div>
-      <footer>Desenvolvidor por: Ruan Portella & Carlos Eduardo</footer>
+      <footer>Desenvolvido por: Ruan Portella & Carlos Eduardo</footer>
     </>
   );
 }

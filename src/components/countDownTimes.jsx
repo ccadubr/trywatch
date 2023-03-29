@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/countDownTimes.css';
+import './countDownTimes.css';
 import alarm from '../assets/alarm.wav'
 
 class CountdownTimer extends Component {
@@ -91,6 +91,50 @@ class CountdownTimer extends Component {
     this.setState({ inputNumber: '', time: 0, RestartNumber: 0, start: true, disable: true, notStarted: true, disableInput: false });
   };
 
+  default = () => {
+    this.setState({
+    time: 600,
+    inputNumber: '',
+    RestartNumber: 600,
+    paused: false,
+    finished: false,
+    start: false,
+    notStarted: false,
+    disableInput: true 
+    });
+    this.restartTimer();
+  };
+
+  defaultShort = () => {
+    this.setState({
+      time: 300,
+      inputNumber: '',
+      RestartNumber: 300,
+      paused: false,
+      finished: false,
+      start: false,
+      notStarted: false,
+      disableInput: true 
+    });
+    this.restartTimer();
+  };
+
+  defaultRandom = () => {
+    const RANDOM_TIMER = Math.floor(Math.random() * 1971 + 30);
+    console.log(RANDOM_TIMER);
+    this.setState({
+      time: RANDOM_TIMER,
+      inputNumber: '',
+      RestartNumber: RANDOM_TIMER,
+      paused: false,
+      finished: false,
+      start: false,
+      notStarted: false,
+      disableInput: true 
+    });
+    this.restartTimer();
+  };
+
   formatTime(time) {
     const [minutesRight, minutesLeft] = Math.floor(time / 60).toString().padStart(2, '0');
     const [secondsRight, secondsLeft] = (time % 60).toString().padStart(2, '0');
@@ -147,6 +191,13 @@ class CountdownTimer extends Component {
               }
               { !notStarted && <button onClick={ () => this.stopTimer() }>Parar</button> }
             </div>
+            { start && 
+            <div className="options-default">
+              <button type="button" onClick={ this.default }>Intervalo ⏰</button>
+              <button type="button" onClick={ this.defaultShort }>Vamos rápido 🏃‍♂️</button>
+              <button type="button" onClick={ this.defaultRandom }>Aleatório 🔀</button>
+            </div>
+            }
           </form>
         </div>
         {

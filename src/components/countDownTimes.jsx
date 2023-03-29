@@ -121,7 +121,6 @@ class CountdownTimer extends Component {
 
   defaultRandom = () => {
     const RANDOM_TIMER = Math.floor(Math.random() * 1971 + 30);
-    console.log(RANDOM_TIMER);
     this.setState({
       time: RANDOM_TIMER,
       inputNumber: '',
@@ -166,7 +165,6 @@ class CountdownTimer extends Component {
     return (
       <>
         <div className="stopwatch"> 
-        {/* */}
           <h1>{this.formatTime(time)}</h1>
           <form>
             { !disableInput && <input
